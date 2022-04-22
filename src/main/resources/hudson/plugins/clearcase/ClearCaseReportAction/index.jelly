@@ -1,0 +1,71 @@
+<!--
+
+    The MIT License
+
+    Copyright (c) 2007-2009, Sun Microsystems, Inc., Yosi Kalmanson
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+
+-->
+
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
+  xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+  <l:layout>
+    <st:include it="${it.owner}" page="sidepanel.jelly" />
+    <l:main-panel>
+      <h2>ClearCase Information</h2>
+      <j:choose>
+        <j:when test="${it.cspec}">
+          <h3>Config Spec.</h3>
+          <local:blockWrapperPane>
+            <local:rowWrapper>
+                <local:cellWrapper>
+                  ${it.configSpecHtml}
+                </local:cellWrapper>
+              </local:rowWrapper>
+          </local:blockWrapperPane>
+        </j:when>
+        <j:otherwise>
+          <h3>Stream: ${it.stream}</h3>
+          <j:choose>
+            <j:when test="${it.baselineInfo}">
+              <h3>Baseline list:</h3>
+              <local:blockWrapper>
+                <local:rowWrapper>
+                    <local:cellWrapperPaneHeader>Component</local:cellWrapperPaneHeader>
+                    <local:cellWrapperPaneHeader>Baseline</local:cellWrapperPaneHeader>
+                  </local:rowWrapper>
+                  <j:forEach var="i" items="${it.baselines}">
+                    <local:rowWrapper>
+                      <local:cellWrapperPane>
+                        ${i.componentName}
+                      </local:cellWrapperPane>
+                      <local:cellWrapperPane>
+                        ${i.baselineName}
+                      </local:cellWrapperPane>
+                    </local:rowWrapper>
+                  </j:forEach>
+               </local:blockWrapper>
+            </j:when>
+          </j:choose>
+        </j:otherwise>
+      </j:choose>
+    </l:main-panel>
+  </l:layout>
+</j:jelly>
