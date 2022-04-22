@@ -14,8 +14,10 @@
   DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
   ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
   DEALINGS IN THE SOFTWARE. -->
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define"
-  xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
+
+  <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler"
+         xmlns:f="/lib/form" xmlns:local="/lib/clearcase">
+
   <f:description>
     <div align="right">
       <a href="${rootURL}/scm/ClearCaseSCM/listViews">List clearcase views</a>
@@ -35,19 +37,13 @@
       checkUrl="'${rootURL}/scm/ClearCaseSCM/mandatoryCheck?errorText='+escape('Stream selector is mandatory')+'&amp;value='+escape(this.value)" />
   </f:entry>
 
-  <tr>
-    <td colspan="4">
-      <local:blockWrapper>
-        <f:optionalBlock name="ucm.useManualLoadRules"
-          title="Define load rules manually" checked="${scm.useManualLoadRules || not empty scm.loadRules}"
-          help="/plugin/clearcase/useManualLoadRules.html">
-          <f:entry title="Load rules" help="/plugin/clearcase/loadrules.html">
-            <f:textarea name="ucm.loadrules" value="${scm.loadRules}" />
-          </f:entry>
-        </f:optionalBlock>
-      </local:blockWrapper>
-    </td>
-  </tr>
+  <f:optionalBlock name="ucm.useManualLoadRules"
+    title="Define load rules manually" checked="${scm.useManualLoadRules || not empty scm.loadRules}"
+    help="/plugin/clearcase/useManualLoadRules.html">
+    <f:entry title="Load rules" help="/plugin/clearcase/loadrules.html">
+      <f:textarea name="ucm.loadrules" value="${scm.loadRules}" />
+    </f:entry>
+  </f:optionalBlock>
 
   <f:entry title="Use update" field="useupdate">
     <f:checkbox name="ucm.useupdate" checked="${h.defaultToTrue(scm.useUpdate)}" />
