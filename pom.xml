@@ -37,7 +37,11 @@
 	<dependencies>
 	
 	
-			
+			<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+				<version>2.1</version>
+		</dependency>
 	
 	
 		
@@ -84,6 +88,14 @@
 					<compatibleSinceVersion>1.0</compatibleSinceVersion>
 				</configuration>
 			</plugin>
+			
+			<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<configuration>
+							<additionalparam>-Xdoclint:none</additionalparam>
+						</configuration>
+					</plugin>
 		</plugins>
 	</build>
 	<profiles>
