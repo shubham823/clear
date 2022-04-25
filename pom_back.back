@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>org.jenkins-ci.plugins</groupId>
 		<artifactId>plugin</artifactId>
-		<version>1.424</version>
+		<version>1.625.1</version>
 	</parent>
 
 	<artifactId>clearcase</artifactId>
@@ -31,22 +31,28 @@
 	</developers>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<powermock.version>1.5</powermock.version>
+		<powermock.version>1.7.4</powermock.version>
 		<maven-hpi-plugin.version>1.96</maven-hpi-plugin.version>
 	</properties>
 	<dependencies>
 	
+	<dependency>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.xerces</artifactId>
+				<version>2.9.1_5</version>
+		</dependency>
 	
-			
 	
 	
-		
-		
-		
+		<dependency>
+			<groupId>commons-digester</groupId>
+			<artifactId>commons-digester</artifactId>
+				<version>2.1</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.11</version>
+			<version>[4.13.1,)</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -75,8 +81,8 @@
 	  <tag>clearcase-1.6.8</tag>
   </scm>
 	<build>
-	<plugins>
-		<plugin>
+		<plugins>
+			<plugin>
 				<groupId>org.jenkins-ci.tools</groupId>
 				<artifactId>maven-hpi-plugin</artifactId>
 				<extensions>true</extensions>
